@@ -1,8 +1,8 @@
 # Progress
 
 ## Completed
-- Phase 1: Dataset Inspection (Synthetic dataset inspected, decisions recorded).
-- Phase 2: Trainer (Implemented K=2..8 sweep, StandardScaler, KMeans, metadata and pipeline saving, fixed linting errors. Ran via Docker and selected K=6 based on Silhouette=0.0961).
+- Phase 1: Dataset Inspection (Synthetic dataset inspected, generator rewritten to output 5 latent overlapping archetypes, decisions recorded).
+- Phase 2: Trainer (Re-engineered to reduce genre dominance using compact groups. Added strict K-selection rule rejecting >50% max_share and choosing smaller K if silhouette diff < 0.01. Fixed segment naming logic. Ran natively via Docker: Selected K=5, Silhouette=0.4647).
 - Phase 3: API (Pydantic validation, health/recommend contracts, lazy load, fixed linting errors).
 - Phase 4: Evaluator (Tests implemented, fixed linting errors).
 - Phase 5: Docker/Compose (Version removed, slim images pinned, Python healthcheck, outputs bind-mounted).

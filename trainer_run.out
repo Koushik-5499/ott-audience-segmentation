@@ -1,0 +1,30 @@
+ Container ott-audience-segmentation-trainer-run-1d7daca35059 Creating 
+ Container ott-audience-segmentation-trainer-run-1d7daca35059 Created 
+2026-09-28 16:45:10 [INFO] ============================================================
+2026-09-28 16:45:10 [INFO] Trainer Service Starting
+2026-09-28 16:45:10 [INFO] ============================================================
+2026-09-28 16:45:10 [INFO] Dataset found: /app/data/synthetic_ott_users.csv
+2026-09-28 16:45:10 [INFO] Loaded 2015 rows, 6 columns
+2026-09-28 16:45:10 [INFO] Raw dataset: 2015 rows, 6 columns
+2026-09-28 16:45:10 [INFO] Dropped 15 duplicate rows -> 2000 rows
+2026-09-28 16:45:10 [INFO] Set 5 negative values in total_watch_time_hours to NaN
+2026-09-28 16:45:10 [INFO] Set 3 negative values in avg_session_mins to NaN
+2026-09-28 16:45:10 [INFO] Missing values in total_watch_time_hours: 46
+2026-09-28 16:45:10 [INFO] Missing values in avg_session_mins: 47
+2026-09-28 16:45:10 [INFO] Missing values in sessions_per_week: 44
+2026-09-28 16:45:10 [INFO] Missing values in weekend_ratio: 46
+2026-09-28 16:45:10 [INFO] Missing values in top_genres: 15
+2026-09-28 16:45:10 [INFO] Imputed 46 NaN in total_watch_time_hours with median=62.68
+2026-09-28 16:45:10 [INFO] Imputed 47 NaN in avg_session_mins with median=44.10
+2026-09-28 16:45:10 [INFO] Imputed 44 NaN in sessions_per_week with median=4.70
+2026-09-28 16:45:10 [INFO] Imputed 46 NaN in weekend_ratio with median=0.51
+2026-09-28 16:45:10 [INFO] Imputed 15 NaN in top_genres with empty string
+2026-09-28 16:45:10 [INFO] Clean dataset: 2000 rows
+Traceback (most recent call last):
+  File "/app/main.py", line 733, in <module>
+    main()
+  File "/app/main.py", line 596, in main
+    feature_transformer = OTTFeatureTransformer(genre_vocabulary=ALL_GENRES)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: OTTFeatureTransformer() takes no arguments
+

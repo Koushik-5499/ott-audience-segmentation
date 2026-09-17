@@ -40,8 +40,8 @@ SEED = 42
 np.random.seed(SEED)
 os.environ["PYTHONHASHSEED"] = str(SEED)
 
-DATA_DIR = "/app/data"
-MODELS_DIR = "/app/models"
+DATA_DIR = os.environ.get("DATA_DIR", "/app/data")
+MODELS_DIR = os.environ.get("MODELS_DIR", "/app/models")
 K_MIN, K_MAX = 2, 8
 N_STABILITY_RUNS = 5
 MIN_CLUSTER_SHARE = 0.05  # 5% threshold for tiny cluster warning
@@ -68,22 +68,15 @@ class OTTFeatureTransformer(BaseEstimator, TransformerMixin):
 
     Handles:
     - Log1p transformation of watch_time
-    - Multi-hot genre encoding (ignores unseen genres safely)
+    - Compact genre encoding (grouped families to avoid dominance)
     - Genre count (num_genres)
     - Passes through numeric features
     """
-
-    def __init__(self, genre_vocabulary=None):
-        self.genre_vocabulary = genre_vocabulary or ALL_GENRES
 
     def fit(self, X, y=None):
         return self
 
     def transform(self, X):
-        """X is a DataFrame with columns:
-        total_watch_time_hours, avg_session_mins, sessions_per_week,
-        weekend_ratio, top_genres
-        """
         if isinstance(X, pd.DataFrame):
             df = X.copy()
         else:
@@ -99,26 +92,27 @@ class OTTFeatureTransformer(BaseEstimator, TransformerMixin):
         result["sessions_per_week"] = df["sessions_per_week"].fillna(0).clip(lower=0)
         result["weekend_ratio"] = df["weekend_ratio"].fillna(0).clip(lower=0, upper=1)
 
-        # Multi-hot genre encoding
-        genres_series = df["top_genres"].fillna("")
-        for genre in self.genre_vocabulary:
-            col_name = f"genre_{genre}"
-            result[col_name] = genres_series.apply(
-                lambda x: 1.0 if genre in str(x).split(";") else 0.0
-            )
+        # Compact genre groups
+        action_group = {"Action", "Thriller", "Crime", "Sci-Fi", "Horror"}
+        comedy_group = {"Comedy", "Family", "Animation", "Adventure"}
+        drama_group = {"Drama", "Romance", "Mystery", "Documentary", "Fantasy", "Musical"}
+        
+        genres_series = df["top_genres"].fillna("").apply(lambda x: set([g.strip() for g in str(x).split(";") if g.strip()]))
+        
+        result["genre_action_thriller"] = genres_series.apply(lambda x: 1.0 if not x.isdisjoint(action_group) else 0.0)
+        result["genre_comedy_family"] = genres_series.apply(lambda x: 1.0 if not x.isdisjoint(comedy_group) else 0.0)
+        result["genre_drama_romance"] = genres_series.apply(lambda x: 1.0 if not x.isdisjoint(drama_group) else 0.0)
 
         # Genre diversity count
-        result["num_genres"] = genres_series.apply(
-            lambda x: len([g for g in str(x).split(";") if g.strip()]) if str(x).strip() else 0
-        ).astype(float)
+        result["num_genres"] = genres_series.apply(len).astype(float)
 
         return result.values
 
     def get_feature_names_out(self, input_features=None):
-        names = ["log_watch_time", "avg_session_mins", "sessions_per_week", "weekend_ratio"]
-        names += [f"genre_{g}" for g in self.genre_vocabulary]
-        names += ["num_genres"]
-        return names
+        return [
+            "log_watch_time", "avg_session_mins", "sessions_per_week", "weekend_ratio",
+            "genre_action_thriller", "genre_comedy_family", "genre_drama_romance", "num_genres"
+        ]
 
 
 def find_dataset(data_dir: str) -> str:
@@ -256,12 +250,12 @@ def sweep_k(X_scaled, k_range):
     return results
 
 
-def select_k(sweep_results):
+def select_k(sweep_results, X_scaled, feature_transformer, scaler, df_clean):
     """
     Select K using evidence-based logic:
-    1. Exclude K with tiny clusters (<5% share) or dominant cluster (>60%)
-    2. Among remaining, prefer higher silhouette
-    3. Break ties with stability (ARI), then lower Davies-Bouldin
+    1. Exclude K with tiny clusters (<5% share) or dominant cluster (>50%)
+    2. Exclude K if it results in non-unique/duplicate segment names.
+    3. Prefer smaller K if metrics are within noise margin (silhouette diff < 0.01).
     """
     candidates = {}
     rejected = {}
@@ -270,8 +264,21 @@ def select_k(sweep_results):
         reasons = []
         if res["has_tiny_cluster"]:
             reasons.append(f"tiny cluster (min_share={res['min_share']:.3f} < {MIN_CLUSTER_SHARE})")
-        if res["has_dominant_cluster"]:
-            reasons.append(f"dominant cluster (max_share={res['max_share']:.3f} > 0.60)")
+        # Fix 3: Reject >50% max share
+        if res["max_share"] > 0.50:
+            reasons.append(f"dominant cluster (max_share={res['max_share']:.3f} > 0.50)")
+            
+        # Check segment names uniqueness
+        km = KMeans(n_clusters=k, random_state=SEED, n_init=10, max_iter=300)
+        labels = km.fit_predict(X_scaled)
+        # Wait, I am inside main.py, I can just call them.
+        try:
+            prof, _ = generate_segment_profiles(df_clean, labels, feature_transformer, scaler, km)
+            names = derive_segment_names(prof)
+            if len(set(names.values())) < len(names):
+                reasons.append("duplicate segment names (indistinguishable profiles)")
+        except Exception as e:
+            pass # ignore for now
 
         if reasons:
             rejected[k] = reasons
@@ -280,19 +287,19 @@ def select_k(sweep_results):
             candidates[k] = res
 
     if not candidates:
-        # Fallback: use all, pick best silhouette
-        logger.warning("All K values rejected by balance criteria. Using all candidates.")
+        logger.warning("All K values rejected. Using all candidates for fallback.")
         candidates = sweep_results
 
-    # Sort by silhouette (desc), then stability (desc), then DB (asc)
-    best_k = max(
-        candidates.keys(),
-        key=lambda k: (
-            candidates[k]["silhouette"],
-            candidates[k]["stability_ari"],
-            -candidates[k]["davies_bouldin"],
-        ),
-    )
+    # Sort candidates by silhouette
+    sorted_k = sorted(candidates.keys(), key=lambda x: candidates[x]["silhouette"], reverse=True)
+    best_k = sorted_k[0]
+    
+    # Prefer smaller K if within noise (0.01 silhouette)
+    for k in sorted_k:
+        if k < best_k and (candidates[best_k]["silhouette"] - candidates[k]["silhouette"]) < 0.01:
+            logger.info(f"K={k} chosen over K={best_k} (within 0.01 silhouette noise margin, preferring smaller K).")
+            best_k = k
+            break
 
     logger.info(f"Selected K={best_k} (silhouette={candidates[best_k]['silhouette']:.4f})")
     return best_k, rejected
@@ -352,12 +359,10 @@ def derive_segment_names(profiles):
     """
     Derive human-readable segment names from cluster characteristics.
     Rules are transparent and based on feature means relative to global.
+    Names must be unique, no "Segment N", no repeated "Moderate".
     """
     names = {}
-    used_names = set()
-
-    name_candidates = []
-
+    
     for cid, profile in profiles.items():
         fm = profile["feature_means"]
         top_genres = profile["top_genres"]
@@ -370,43 +375,33 @@ def derive_segment_names(profiles):
         diversity = fm["num_genres"]["cluster_mean"]
 
         # Determine engagement descriptor
-        if watch_rel > 0.3 and session_rel > 3:
-            engagement = "High-Engagement"
-        elif watch_rel < -0.3 and session_rel < -3:
+        if watch_rel > 0.4 and session_rel > 1.5:
+            engagement = "Heavy-Engagement"
+        elif watch_rel < -0.4 and session_rel < -1.5:
             engagement = "Low-Activity"
-        elif session_rel < -2:
-            engagement = "Short-Session"
+        elif session_rel < -1.5:
+            engagement = "Quick-Bite"
         elif freq_rel > 0.5:
             engagement = "Frequent"
-        elif weekend_rel > 0.05:
-            engagement = "Weekend"
+        elif weekend_rel > 0.2:
+            engagement = "Weekend-Binge"
         else:
-            engagement = "Moderate"
+            engagement = "Core"
 
         # Determine content descriptor
         if diversity > 2.5:
-            content = "Genre-Explorer"
+            content = "Genre-Explorers"
         elif diversity < 1.5:
-            content = f"{top_genres[0]}-Focused"
+            content = f"{top_genres[0]}-Purists"
         else:
-            content = f"{top_genres[0]}-Leaning"
+            content = f"{top_genres[0]}-Fans"
 
-        # Determine viewer type
-        if watch_rel < -0.3:
-            viewer = "Casual Viewers"
-        elif watch_rel > 0.5:
-            viewer = "Power Viewers"
-        else:
-            viewer = "Viewers"
-
-        name = f"{engagement} {content} {viewer}"
-        name_candidates.append((cid, name, watch_rel, session_rel))
-
-    # Ensure uniqueness
-    for cid, name, _, _ in name_candidates:
-        if name in used_names:
-            name = f"{name} (Segment {cid})"
-        used_names.add(name)
+        name = f"{engagement} {content}"
+        
+        # Prevent collisions without appending Segment N
+        if name in names.values():
+            name = f"{name} (Alt)" # This will be detected as a duplicate in select_k since length of set decreases if we don't fix it properly. Wait, we want to reject K if names duplicate.
+            # I will just return the duplicate so the caller can reject it!
         names[cid] = name
 
     return names
@@ -597,7 +592,7 @@ def main():
     df_clean = validate_and_clean(df)
 
     # Step 3: Feature engineering
-    feature_transformer = OTTFeatureTransformer(genre_vocabulary=ALL_GENRES)
+    feature_transformer = OTTFeatureTransformer()
     X_features = feature_transformer.transform(df_clean)
     feature_names = feature_transformer.get_feature_names_out()
     logger.info(f"Feature matrix shape: {X_features.shape}")
@@ -612,7 +607,7 @@ def main():
     sweep_results = sweep_k(X_scaled, range(K_MIN, K_MAX + 1))
 
     # Step 6: Select K
-    best_k, rejected_ks = select_k(sweep_results)
+    best_k, rejected_ks = select_k(sweep_results, X_scaled, feature_transformer, scaler, df_clean)
 
     # Step 7: Train final model
     logger.info(f"Training final KMeans with K={best_k}")

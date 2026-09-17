@@ -1,0 +1,51 @@
+ Container ott-audience-segmentation-trainer-run-027c127d6604 Creating 
+ Container ott-audience-segmentation-trainer-run-027c127d6604 Created 
+2026-09-28 16:47:11 [INFO] ============================================================
+2026-09-28 16:47:11 [INFO] Trainer Service Starting
+2026-09-28 16:47:11 [INFO] ============================================================
+2026-09-28 16:47:11 [INFO] Dataset found: /app/data/synthetic_ott_users.csv
+2026-09-28 16:47:11 [INFO] Loaded 2015 rows, 6 columns
+2026-09-28 16:47:11 [INFO] Raw dataset: 2015 rows, 6 columns
+2026-09-28 16:47:11 [INFO] Dropped 15 duplicate rows -> 2000 rows
+2026-09-28 16:47:11 [INFO] Set 5 negative values in total_watch_time_hours to NaN
+2026-09-28 16:47:11 [INFO] Set 3 negative values in avg_session_mins to NaN
+2026-09-28 16:47:11 [INFO] Missing values in total_watch_time_hours: 46
+2026-09-28 16:47:11 [INFO] Missing values in avg_session_mins: 47
+2026-09-28 16:47:11 [INFO] Missing values in sessions_per_week: 44
+2026-09-28 16:47:11 [INFO] Missing values in weekend_ratio: 46
+2026-09-28 16:47:11 [INFO] Missing values in top_genres: 15
+2026-09-28 16:47:11 [INFO] Imputed 46 NaN in total_watch_time_hours with median=62.68
+2026-09-28 16:47:11 [INFO] Imputed 47 NaN in avg_session_mins with median=44.10
+2026-09-28 16:47:11 [INFO] Imputed 44 NaN in sessions_per_week with median=4.70
+2026-09-28 16:47:11 [INFO] Imputed 46 NaN in weekend_ratio with median=0.51
+2026-09-28 16:47:11 [INFO] Imputed 15 NaN in top_genres with empty string
+2026-09-28 16:47:11 [INFO] Clean dataset: 2000 rows
+2026-09-28 16:47:11 [INFO] Feature matrix shape: (2000, 8)
+2026-09-28 16:47:11 [INFO] Features: ['log_watch_time', 'avg_session_mins', 'sessions_per_week', 'weekend_ratio', 'genre_action_thriller', 'genre_comedy_family', 'genre_drama_romance', 'num_genres']
+2026-09-28 16:47:11 [INFO] --- K Sweep (K=2..8) ---
+2026-09-28 16:47:18 [INFO] K=2: silhouette=0.3081, DB=1.5031, CH=799.31, stability=1.0000, min_share=0.421, max_share=0.579
+2026-09-28 16:47:24 [INFO] K=3: silhouette=0.3662, DB=1.1047, CH=810.92, stability=0.7727, min_share=0.142, max_share=0.569
+2026-09-28 16:47:30 [INFO] K=4: silhouette=0.4265, DB=1.0267, CH=1011.24, stability=1.0000, min_share=0.141, max_share=0.325
+2026-09-28 16:47:36 [INFO] K=5: silhouette=0.4647, DB=0.9944, CH=1196.35, stability=1.0000, min_share=0.142, max_share=0.277
+2026-09-28 16:47:42 [INFO] K=6: silhouette=0.4727, DB=1.1948, CH=1120.35, stability=0.9967, min_share=0.093, max_share=0.272
+2026-09-28 16:47:49 [INFO] K=7: silhouette=0.4644, DB=1.1341, CH=1033.32, stability=0.9893, min_share=0.059, max_share=0.269
+2026-09-28 16:47:55 [INFO] K=8: silhouette=0.3814, DB=1.2263, CH=953.96, stability=0.9733, min_share=0.054, max_share=0.226
+2026-09-28 16:47:56 [INFO] K=2 REJECTED: dominant cluster (max_share=0.579 > 0.50)
+2026-09-28 16:47:57 [INFO] K=3 REJECTED: dominant cluster (max_share=0.569 > 0.50)
+2026-09-28 16:48:03 [INFO] K=5 chosen over K=6 (within 0.01 silhouette noise margin, preferring smaller K).
+2026-09-28 16:48:03 [INFO] Selected K=5 (silhouette=0.4647)
+2026-09-28 16:48:03 [INFO] Training final KMeans with K=5
+2026-09-28 16:48:04 [INFO] --- GMM Experiment (K=5) ---
+2026-09-28 16:48:04 [INFO] GMM: silhouette=0.4215, DB=1.2873, CH=875.78, BIC=-31764.75
+2026-09-28 16:48:04 [INFO] Segment 0: 'Heavy-Engagement action_thriller-Purists' (n=553, share=0.277)
+2026-09-28 16:48:04 [INFO] Segment 1: 'Quick-Bite comedy_family-Fans' (n=464, share=0.232)
+2026-09-28 16:48:04 [INFO] Segment 2: 'Weekend-Binge drama_romance-Fans' (n=313, share=0.157)
+2026-09-28 16:48:04 [INFO] Segment 3: 'Quick-Bite Genre-Explorers' (n=284, share=0.142)
+2026-09-28 16:48:04 [INFO] Segment 4: 'Low-Activity drama_romance-Fans' (n=386, share=0.193)
+2026-09-28 16:48:04 [INFO] Pipeline saved to /app/models/pipeline.pkl
+2026-09-28 16:48:04 [INFO] Metadata saved to /app/models/metadata.json
+2026-09-28 16:48:04 [INFO] Clustering metrics saved to /app/models/clustering_metrics.json
+2026-09-28 16:48:04 [INFO] ============================================================
+2026-09-28 16:48:04 [INFO] Trainer completed successfully
+2026-09-28 16:48:04 [INFO] K=5, Silhouette=0.4647
+2026-09-28 16:48:04 [INFO] ============================================================
