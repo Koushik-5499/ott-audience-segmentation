@@ -1,0 +1,516 @@
+ Image ott-audience-segmentation-api-cold Building 
+ Image ott-audience-segmentation-evaluator Building 
+ Image ott-audience-segmentation-trainer Building 
+ Image ott-audience-segmentation-api Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.29kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 939B done
+#2 DONE 0.0s
+
+#3 [evaluator internal] load build definition from Dockerfile
+#3 transferring dockerfile: 586B done
+#3 DONE 0.0s
+
+#4 [trainer internal] load build definition from Dockerfile
+#4 transferring dockerfile: 596B done
+#4 DONE 0.0s
+
+#5 [evaluator internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#5 DONE 0.0s
+
+#6 [trainer internal] load .dockerignore
+#6 transferring context: 174B done
+#6 DONE 0.0s
+
+#7 [evaluator internal] load .dockerignore
+#7 transferring context: 174B done
+#7 DONE 0.0s
+
+#8 [trainer internal] load build context
+#8 DONE 0.0s
+
+#9 [api internal] load .dockerignore
+#9 transferring context: 174B done
+#9 DONE 0.0s
+
+#10 [evaluator 1/7] FROM docker.io/library/python:3.11-slim-bookworm@sha256:a36c24f9cbdf4fd0f52d67f0823eeac19c2028c637cecc392d97f980d4fec56b
+#10 resolve docker.io/library/python:3.11-slim-bookworm@sha256:a36c24f9cbdf4fd0f52d67f0823eeac19c2028c637cecc392d97f980d4fec56b
+#10 resolve docker.io/library/python:3.11-slim-bookworm@sha256:a36c24f9cbdf4fd0f52d67f0823eeac19c2028c637cecc392d97f980d4fec56b 0.1s done
+#10 DONE 0.1s
+
+#11 [evaluator internal] load build context
+#11 transferring context: 183B done
+#11 DONE 0.0s
+
+#8 [trainer internal] load build context
+#8 transferring context: 183B done
+#8 DONE 0.0s
+
+#12 [api internal] load build context
+#12 transferring context: 16.44kB done
+#12 DONE 0.0s
+
+#13 [evaluator 4/7] COPY requirements.txt .
+#13 CACHED
+
+#14 [evaluator 6/7] COPY main.py .
+#14 CACHED
+
+#15 [evaluator 3/7] RUN mkdir -p /app/output /app/models &&     adduser --disabled-password --gecos "" --uid 1000 appuser &&     chown -R appuser:appuser /app
+#15 CACHED
+
+#16 [evaluator 5/7] RUN pip install --no-cache-dir -r requirements.txt
+#16 CACHED
+
+#17 [evaluator 7/7] RUN chown -R appuser:appuser /app
+#17 CACHED
+
+#18 [trainer 4/7] COPY requirements.txt .
+#18 CACHED
+
+#19 [trainer 5/7] RUN pip install --no-cache-dir -r requirements.txt
+#19 CACHED
+
+#20 [trainer 6/7] COPY main.py .
+#20 CACHED
+
+#21 [trainer 7/7] RUN chown -R appuser:appuser /app
+#21 CACHED
+
+#22 [api 2/7] WORKDIR /app
+#22 CACHED
+
+#23 [api 4/7] COPY requirements.txt .
+#23 CACHED
+
+#24 [api 3/7] RUN mkdir -p /app/models &&     adduser --disabled-password --gecos "" --uid 1000 appuser &&     chown -R appuser:appuser /app
+#24 CACHED
+
+#25 [api 5/7] RUN pip install --no-cache-dir -r requirements.txt
+#25 CACHED
+
+#26 [trainer] exporting to image
+#26 exporting layers done
+#26 exporting manifest sha256:f8fde21bef2196232e895c72ac270298a7eb722b4d579e0d3dd352149bfe8a04 done
+#26 exporting config sha256:832eb81e4c554ce176545f37ec960c48811468883a6807b639f555790fe06515 0.0s done
+#26 ...
+
+#27 [api-cold 6/7] COPY main.py .
+#27 DONE 0.1s
+
+#26 [trainer] exporting to image
+#26 exporting attestation manifest sha256:4cf333bae0eca7d29a603597dc90fb42ad35afb490a8d7f7b8a706187cc35c23 0.0s done
+#26 exporting manifest list sha256:408412469867dd32031ccabb9e9c71060e15e23bbd02dc2d3a01b4bb8cc9b8af 0.0s done
+#26 naming to docker.io/library/ott-audience-segmentation-trainer:latest done
+#26 unpacking to docker.io/library/ott-audience-segmentation-trainer:latest
+#26 unpacking to docker.io/library/ott-audience-segmentation-trainer:latest 0.0s done
+#26 DONE 0.2s
+
+#28 [evaluator] exporting to image
+#28 exporting layers done
+#28 exporting manifest sha256:36ccd4d825093da1c387a6a00f5519cc7569937529623809cc0cea53ac480c1e done
+#28 exporting config sha256:f9d18d651bd4eb2f7e73874a9ee498c2b1ee725dd97af42a812f284db095b862 done
+#28 exporting attestation manifest sha256:0d274b2b9316a0aa709fa2f28de851c8f2235187f57d47677b14345db9ebc64c 0.0s done
+#28 exporting manifest list sha256:0c51f50fb892556e9831323571dd4548dc381a9cc4b5c05ac362e50e06c1fbf4 0.0s done
+#28 naming to docker.io/library/ott-audience-segmentation-evaluator:latest done
+#28 unpacking to docker.io/library/ott-audience-segmentation-evaluator:latest 0.0s done
+#28 DONE 0.2s
+
+#29 [api-cold 7/7] RUN chown -R appuser:appuser /app
+#29 DONE 0.2s
+
+#30 [evaluator] resolving provenance for metadata file
+#30 DONE 0.0s
+
+#31 [trainer] resolving provenance for metadata file
+#31 DONE 0.0s
+
+#32 [api] exporting to image
+#32 exporting layers 0.2s done
+#32 exporting manifest sha256:7d6d55f3b21a661c0a3ff40443af6ea4abd7fd1375381105c2eb8d29631050a7 0.0s done
+#32 exporting config sha256:2fb30dae8cc1dfe3a3e6eeec7e24e63bda932a5ecd57ed8d2c530b2687aee601 0.0s done
+#32 exporting attestation manifest sha256:94cb9b258c84b4ad297ea704b4048fe0b8061cdc54c4e6d6a054c8671bcc658a 0.0s done
+#32 exporting manifest list sha256:f5eae797ffd35241dace91c35014e25e8b3d17d978956f171085efdbbcd2c741 0.0s done
+#32 naming to docker.io/library/ott-audience-segmentation-api:latest 0.0s done
+#32 unpacking to docker.io/library/ott-audience-segmentation-api:latest
+#32 unpacking to docker.io/library/ott-audience-segmentation-api:latest 0.0s done
+#32 DONE 0.4s
+
+#33 [api-cold] exporting to image
+#33 exporting layers 0.2s done
+#33 exporting manifest sha256:ba64448c0110e5942ddafeda3660008d4b38a6714ad568c94c844bb089a03f82 0.0s done
+#33 exporting config sha256:b45b8bda36deceb69da535c9f35447fcfa08de699fc2fefcf57b720e31643541 0.0s done
+#33 exporting attestation manifest sha256:f970009f7c7c69e781068d2a5c5a1c292bf45d5599aa58fee77b8f4b9f4a76e3 0.0s done
+#33 exporting manifest list sha256:3275b4f1ac7c6c20a21618594550d714a06203e3ee8de97ef78acc4d1d6edfc9 0.0s done
+#33 naming to docker.io/library/ott-audience-segmentation-api-cold:latest 0.0s done
+#33 unpacking to docker.io/library/ott-audience-segmentation-api-cold:latest 0.0s done
+#33 DONE 0.4s
+
+#34 [api-cold] resolving provenance for metadata file
+#34 DONE 0.1s
+
+#35 [api] resolving provenance for metadata file
+#35 DONE 0.0s
+ Image ott-audience-segmentation-evaluator Built 
+ Image ott-audience-segmentation-trainer Built 
+ Image ott-audience-segmentation-api Built 
+ Image ott-audience-segmentation-api-cold Built 
+ Network ott-audience-segmentation_default Creating 
+ Network ott-audience-segmentation_default Creating 
+ Volume ott-audience-segmentation_model_volume Creating 
+ Volume ott-audience-segmentation_model_volume Creating 
+ Volume ott-audience-segmentation_empty_volume Creating 
+ Volume ott-audience-segmentation_empty_volume Creating 
+ Volume ott-audience-segmentation_model_volume Created 
+ Volume ott-audience-segmentation_model_volume Created 
+ Volume ott-audience-segmentation_empty_volume Created 
+ Volume ott-audience-segmentation_empty_volume Created 
+ Network ott-audience-segmentation_default Created 
+ Network ott-audience-segmentation_default Created 
+ Container ott-audience-segmentation-trainer-1 Creating 
+ Container ott-audience-segmentation-api-cold-1 Creating 
+ Container ott-audience-segmentation-api-cold-1 Created 
+ Container ott-audience-segmentation-trainer-1 Created 
+ Container ott-audience-segmentation-api-1 Creating 
+ Container ott-audience-segmentation-api-1 Created 
+ Container ott-audience-segmentation-evaluator-1 Creating 
+ Container ott-audience-segmentation-evaluator-1 Created 
+Attaching to api-1, api-cold-1, evaluator-1, trainer-1
+ Container ott-audience-segmentation-api-cold-1 Starting 
+ Container ott-audience-segmentation-trainer-1 Starting 
+ Container ott-audience-segmentation-api-cold-1 Started 
+ Container ott-audience-segmentation-trainer-1 Started 
+ Container ott-audience-segmentation-trainer-1 Waiting 
+trainer-1  | 2026-09-28 16:53:56 [INFO] ============================================================
+trainer-1  | 2026-09-28 16:53:56 [INFO] Trainer Service Starting
+trainer-1  | 2026-09-28 16:53:56 [INFO] ============================================================
+trainer-1  | 2026-09-28 16:53:56 [INFO] Dataset found: /app/data/synthetic_ott_users.csv
+trainer-1  | 2026-09-28 16:53:56 [INFO] Loaded 2015 rows, 6 columns
+trainer-1  | 2026-09-28 16:53:56 [INFO] Raw dataset: 2015 rows, 6 columns
+trainer-1  | 2026-09-28 16:53:56 [INFO] Dropped 15 duplicate rows -> 2000 rows
+trainer-1  | 2026-09-28 16:53:56 [INFO] Set 5 negative values in total_watch_time_hours to NaN
+trainer-1  | 2026-09-28 16:53:56 [INFO] Set 3 negative values in avg_session_mins to NaN
+trainer-1  | 2026-09-28 16:53:56 [INFO] Missing values in total_watch_time_hours: 46
+trainer-1  | 2026-09-28 16:53:56 [INFO] Missing values in avg_session_mins: 47
+trainer-1  | 2026-09-28 16:53:56 [INFO] Missing values in sessions_per_week: 44
+trainer-1  | 2026-09-28 16:53:56 [INFO] Missing values in weekend_ratio: 46
+trainer-1  | 2026-09-28 16:53:56 [INFO] Missing values in top_genres: 15
+trainer-1  | 2026-09-28 16:53:56 [INFO] Imputed 46 NaN in total_watch_time_hours with median=62.68
+trainer-1  | 2026-09-28 16:53:56 [INFO] Imputed 47 NaN in avg_session_mins with median=44.10
+trainer-1  | 2026-09-28 16:53:56 [INFO] Imputed 44 NaN in sessions_per_week with median=4.70
+trainer-1  | 2026-09-28 16:53:56 [INFO] Imputed 46 NaN in weekend_ratio with median=0.51
+trainer-1  | 2026-09-28 16:53:56 [INFO] Imputed 15 NaN in top_genres with empty string
+trainer-1  | 2026-09-28 16:53:56 [INFO] Clean dataset: 2000 rows
+trainer-1  | 2026-09-28 16:53:56 [INFO] Feature matrix shape: (2000, 8)
+trainer-1  | 2026-09-28 16:53:56 [INFO] Features: ['log_watch_time', 'avg_session_mins', 'sessions_per_week', 'weekend_ratio', 'genre_action_thriller', 'genre_comedy_family', 'genre_drama_romance', 'num_genres']
+trainer-1  | 2026-09-28 16:53:56 [INFO] --- K Sweep (K=2..8) ---
+api-cold-1  | INFO:     Started server process [1]
+api-cold-1  | INFO:     Waiting for application startup.
+api-cold-1  | 2026-09-28 16:53:57 [INFO] API starting up — attempting to load model...
+api-cold-1  | 2026-09-28 16:53:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:53:57 [WARNING] Model not loaded. Starting lazy loader thread.
+api-cold-1  | INFO:     Application startup complete.
+api-cold-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-cold-1  | 2026-09-28 16:53:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:45226 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:54:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:03 [INFO] K=2: silhouette=0.3081, DB=1.5031, CH=799.31, stability=1.0000, min_share=0.421, max_share=0.579
+api-cold-1  | INFO:     127.0.0.1:50544 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:54:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:50556 - "GET /health HTTP/1.1" 200 OK
+trainer-1   | 2026-09-28 16:54:09 [INFO] K=3: silhouette=0.3662, DB=1.1047, CH=810.92, stability=0.7727, min_share=0.142, max_share=0.569
+api-cold-1  | 2026-09-28 16:54:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:13 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:15 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:15 [INFO] K=4: silhouette=0.4265, DB=1.0267, CH=1011.24, stability=1.0000, min_share=0.141, max_share=0.325
+api-cold-1  | 2026-09-28 16:54:17 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:19 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:58786 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:54:21 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:21 [INFO] K=5: silhouette=0.4647, DB=0.9944, CH=1196.35, stability=1.0000, min_share=0.142, max_share=0.277
+api-cold-1  | 2026-09-28 16:54:23 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:25 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:27 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:28 [INFO] K=6: silhouette=0.4727, DB=1.1948, CH=1120.35, stability=0.9967, min_share=0.093, max_share=0.272
+api-cold-1  | 2026-09-28 16:54:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:37978 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:54:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:34 [INFO] K=7: silhouette=0.4644, DB=1.1341, CH=1033.32, stability=0.9893, min_share=0.059, max_share=0.269
+api-cold-1  | 2026-09-28 16:54:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:46278 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:54:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:41 [INFO] K=8: silhouette=0.3814, DB=1.2263, CH=953.96, stability=0.9733, min_share=0.054, max_share=0.226
+trainer-1   | 2026-09-28 16:54:42 [INFO] K=2 REJECTED: dominant cluster (max_share=0.579 > 0.50)
+api-cold-1  | 2026-09-28 16:54:43 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:43 [INFO] K=3 REJECTED: dominant cluster (max_share=0.569 > 0.50)
+api-cold-1  | 2026-09-28 16:54:45 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:54:47 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:48 [INFO] K=5 chosen over K=6 (within 0.01 silhouette noise margin, preferring smaller K).
+trainer-1   | 2026-09-28 16:54:48 [INFO] Selected K=5 (silhouette=0.4647)
+trainer-1   | 2026-09-28 16:54:48 [INFO] Training final KMeans with K=5
+api-cold-1  | 2026-09-28 16:54:49 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:54:49 [INFO] --- GMM Experiment (K=5) ---
+trainer-1   | 2026-09-28 16:54:50 [INFO] GMM: silhouette=0.4215, DB=1.2873, CH=875.78, BIC=-31764.75
+trainer-1   | 2026-09-28 16:54:50 [INFO] Segment 0: 'Heavy-Engagement action_thriller-Purists' (n=553, share=0.277)
+trainer-1   | 2026-09-28 16:54:50 [INFO] Segment 1: 'Quick-Bite comedy_family-Fans' (n=464, share=0.232)
+trainer-1   | 2026-09-28 16:54:50 [INFO] Segment 2: 'Weekend-Binge drama_romance-Fans' (n=313, share=0.157)
+trainer-1   | 2026-09-28 16:54:50 [INFO] Segment 3: 'Quick-Bite Genre-Explorers' (n=284, share=0.142)
+trainer-1   | 2026-09-28 16:54:50 [INFO] Segment 4: 'Low-Activity drama_romance-Fans' (n=386, share=0.193)
+trainer-1   | 2026-09-28 16:54:50 [INFO] Pipeline saved to /app/models/pipeline.pkl
+trainer-1   | 2026-09-28 16:54:50 [INFO] Metadata saved to /app/models/metadata.json
+trainer-1   | 2026-09-28 16:54:50 [INFO] Clustering metrics saved to /app/models/clustering_metrics.json
+trainer-1   | 2026-09-28 16:54:50 [INFO] ============================================================
+trainer-1   | 2026-09-28 16:54:50 [INFO] Trainer completed successfully
+trainer-1   | 2026-09-28 16:54:50 [INFO] K=5, Silhouette=0.4647
+trainer-1   | 2026-09-28 16:54:50 [INFO] ============================================================
+[Ktrainer-1 exited with code 0
+ Container ott-audience-segmentation-trainer-1 Exited 
+ Container ott-audience-segmentation-api-1 Starting 
+ Container ott-audience-segmentation-api-1 Started 
+ Container ott-audience-segmentation-api-1 Waiting 
+api-cold-1  | 2026-09-28 16:54:51 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:42994 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:54:53 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     Started server process [1]
+api-1       | INFO:     Waiting for application startup.
+api-1       | 2026-09-28 16:54:54 [INFO] API starting up — attempting to load model...
+api-1       | 2026-09-28 16:54:54 [INFO] Model pipeline and metadata loaded successfully.
+api-1       | 2026-09-28 16:54:54 [INFO] Model loaded and API is ready.
+api-1       | INFO:     Application startup complete.
+api-1       | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-cold-1  | 2026-09-28 16:54:55 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:36350 - "GET /health HTTP/1.1" 200 OK
+ Container ott-audience-segmentation-api-1 Healthy 
+ Container ott-audience-segmentation-evaluator-1 Starting 
+ Container ott-audience-segmentation-evaluator-1 Started 
+api-cold-1  | 2026-09-28 16:54:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+evaluator-1  | ============================================================
+evaluator-1  | Evaluator Service Starting
+evaluator-1  | ============================================================
+evaluator-1  | [INFO] Waiting for API at http://api:8000/health (max 120s)...
+api-1        | INFO:     172.19.0.4:48044 - "GET /health HTTP/1.1" 200 OK
+evaluator-1  | [INFO] API healthy and model loaded after 0s.
+api-1        | INFO:     172.19.0.4:48046 - "GET /health HTTP/1.1" 200 OK
+evaluator-1  | [PASS] GET /health
+api-1        | INFO:     172.19.0.4:48050 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Valid profile: High engagement action viewer
+api-1        | INFO:     172.19.0.4:48058 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Valid profile: Casual short-session viewer
+api-1        | INFO:     172.19.0.4:48066 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Valid profile: Genre explorer moderate viewer
+api-1        | INFO:     172.19.0.4:48082 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Valid profile: Low activity weekend viewer
+evaluator-1  | [PASS] Segment coverage: diverse profiles hit multiple segments
+api-1        | INFO:     172.19.0.4:48090 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Segment name matches metadata for USR-TEST-001
+api-1        | INFO:     172.19.0.4:48100 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Segment name matches metadata for USR-TEST-002
+api-1        | INFO:     172.19.0.4:48112 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Segment name matches metadata for USR-TEST-003
+api-1        | INFO:     172.19.0.4:48116 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Segment name matches metadata for USR-TEST-004
+api-1        | INFO:     172.19.0.4:48122 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Edge: unseen genre values
+api-1        | INFO:     172.19.0.4:48132 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Edge: empty top_genres list
+api-1        | INFO:     172.19.0.4:48134 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Edge: zero watch time
+api-1        | INFO:     172.19.0.4:48148 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Edge: very large watch time (999)
+api-1        | INFO:     172.19.0.4:48150 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Edge: very large session duration (999)
+api-1        | INFO:     172.19.0.4:48152 - "POST /recommend HTTP/1.1" 422 Unprocessable Entity
+evaluator-1  | [PASS] Edge: missing required field (user_id)
+api-1        | INFO:     172.19.0.4:48166 - "POST /recommend HTTP/1.1" 422 Unprocessable Entity
+evaluator-1  | [PASS] Edge: missing required field (watch_time_hours)
+api-1        | INFO:     172.19.0.4:48172 - "POST /recommend HTTP/1.1" 422 Unprocessable Entity
+evaluator-1  | [PASS] Edge: string where number expected
+api-1        | INFO:     172.19.0.4:48178 - "POST /recommend HTTP/1.1" 422 Unprocessable Entity
+evaluator-1  | [PASS] Edge: negative watch_time_hours
+api-1        | INFO:     172.19.0.4:48190 - "POST /recommend HTTP/1.1" 422 Unprocessable Entity
+evaluator-1  | [PASS] Edge: negative avg_session_mins
+api-1        | INFO:     172.19.0.4:48192 - "POST /recommend HTTP/1.1" 400 Bad Request
+evaluator-1  | [PASS] Edge: malformed JSON body
+api-1        | INFO:     172.19.0.4:48202 - "POST /recommend HTTP/1.1" 200 OK
+api-1        | INFO:     172.19.0.4:48210 - "POST /recommend HTTP/1.1" 200 OK
+api-1        | INFO:     172.19.0.4:48212 - "POST /recommend HTTP/1.1" 200 OK
+evaluator-1  | [PASS] Edge: repeated identical requests produce identical responses
+api-1        | INFO:     172.19.0.4:48222 - "POST /recommend HTTP/1.1" 422 Unprocessable Entity
+evaluator-1  | [PASS] Edge: absurdly large watch_time (5000, above max 1000)
+evaluator-1  | 
+evaluator-1  | [INFO] Testing cold-start scenario...
+api-cold-1   | INFO:     172.19.0.4:59456 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | INFO:     172.19.0.4:59472 - "POST /recommend HTTP/1.1" 503 Service Unavailable
+evaluator-1  | [PASS] Cold start: GET /health returns model_loaded=false
+evaluator-1  | [PASS] Cold start: POST /recommend returns 503
+evaluator-1  | [INFO] metrics.json written to /app/output/metrics.json
+evaluator-1  | 
+evaluator-1  | ============================================================
+evaluator-1  | Evaluation complete: 25/25 tests passed, 0 failed
+evaluator-1  | metrics.json written to: /app/output/metrics.json
+evaluator-1  | ============================================================
+[Kevaluator-1 exited with code 0
+api-cold-1   | 2026-09-28 16:54:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:36366 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:60368 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:60378 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:13 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:15 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:17 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:46786 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:19 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:21 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:46802 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:23 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:25 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:27 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:41590 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:41594 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:44960 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:43 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:44968 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:45 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:47 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:44666 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:49 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:51 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:53 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:44670 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:55 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:55:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:35760 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:55:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:46308 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:46310 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:13 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:37238 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:15 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:17 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:19 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:37246 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:21 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:23 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:41286 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:25 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:27 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:41296 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:42866 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:42874 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:43 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:45 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:58880 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:47 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:49 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:58890 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:51 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:53 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:55 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:60046 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:56:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:56:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:60056 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:46748 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:46764 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:13 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:15 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:40432 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:17 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:19 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:21 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:40446 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:23 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:25 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:27 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:44108 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:44112 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:44950 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:44956 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:43 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:45 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:47 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:54158 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:49 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:51 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:53 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:54172 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:55 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:57:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:48398 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:57:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:48194 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:48198 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:13 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:39144 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:15 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:17 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:19 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:39158 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:21 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:23 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:51116 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:25 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:27 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:51126 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1        | INFO:     127.0.0.1:50046 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | 2026-09-28 16:58:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1   | INFO:     127.0.0.1:50052 - "GET /health HTTP/1.1" 200 OK
+api-cold-1   | 2026-09-28 16:58:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.

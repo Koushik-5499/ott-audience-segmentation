@@ -1,0 +1,413 @@
+ Image ott-audience-segmentation-trainer Building 
+ Image ott-audience-segmentation-api Building 
+ Image ott-audience-segmentation-api-cold Building 
+ Image ott-audience-segmentation-evaluator Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.29kB done
+#1 DONE 0.0s
+
+#2 [trainer internal] load build definition from Dockerfile
+#2 transferring dockerfile: 596B done
+#2 DONE 0.0s
+
+#3 [api internal] load build definition from Dockerfile
+#3 transferring dockerfile: 939B done
+#3 DONE 0.0s
+
+#4 [evaluator internal] load build definition from Dockerfile
+#4 transferring dockerfile: 586B done
+#4 DONE 0.0s
+
+#5 [evaluator internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#5 DONE 0.0s
+
+#6 [api-cold internal] load .dockerignore
+#6 transferring context: 174B done
+#6 DONE 0.0s
+
+#7 [evaluator internal] load .dockerignore
+#7 transferring context: 174B done
+#7 DONE 0.0s
+
+#8 [trainer internal] load .dockerignore
+#8 transferring context: 174B done
+#8 DONE 0.0s
+
+#9 [evaluator 1/7] FROM docker.io/library/python:3.11-slim-bookworm@sha256:a36c24f9cbdf4fd0f52d67f0823eeac19c2028c637cecc392d97f980d4fec56b
+#9 resolve docker.io/library/python:3.11-slim-bookworm@sha256:a36c24f9cbdf4fd0f52d67f0823eeac19c2028c637cecc392d97f980d4fec56b 0.1s done
+#9 DONE 0.1s
+
+#10 [evaluator internal] load build context
+#10 transferring context: 183B done
+#10 DONE 0.0s
+
+#11 [trainer internal] load build context
+#11 transferring context: 183B done
+#11 DONE 0.0s
+
+#12 [api-cold internal] load build context
+#12 transferring context: 182B done
+#12 DONE 0.0s
+
+#13 [evaluator 4/7] COPY requirements.txt .
+#13 CACHED
+
+#14 [evaluator 3/7] RUN mkdir -p /app/output /app/models &&     adduser --disabled-password --gecos "" --uid 1000 appuser &&     chown -R appuser:appuser /app
+#14 CACHED
+
+#15 [evaluator 6/7] COPY main.py .
+#15 CACHED
+
+#16 [evaluator 5/7] RUN pip install --no-cache-dir -r requirements.txt
+#16 CACHED
+
+#17 [evaluator 7/7] RUN chown -R appuser:appuser /app
+#17 CACHED
+
+#18 [api-cold 6/7] COPY main.py .
+#18 CACHED
+
+#19 [api-cold 4/7] COPY requirements.txt .
+#19 CACHED
+
+#20 [api-cold 5/7] RUN pip install --no-cache-dir -r requirements.txt
+#20 CACHED
+
+#21 [api-cold 7/7] RUN chown -R appuser:appuser /app
+#21 CACHED
+
+#22 [api-cold 3/7] RUN mkdir -p /app/models &&     adduser --disabled-password --gecos "" --uid 1000 appuser &&     chown -R appuser:appuser /app
+#22 CACHED
+
+#23 [trainer 6/7] COPY main.py .
+#23 CACHED
+
+#24 [trainer 5/7] RUN pip install --no-cache-dir -r requirements.txt
+#24 CACHED
+
+#25 [api-cold 2/7] WORKDIR /app
+#25 CACHED
+
+#26 [trainer 4/7] COPY requirements.txt .
+#26 CACHED
+
+#27 [trainer 7/7] RUN chown -R appuser:appuser /app
+#27 CACHED
+
+#28 [evaluator] exporting to image
+#28 exporting layers done
+#28 exporting manifest sha256:36ccd4d825093da1c387a6a00f5519cc7569937529623809cc0cea53ac480c1e done
+#28 exporting config sha256:f9d18d651bd4eb2f7e73874a9ee498c2b1ee725dd97af42a812f284db095b862 done
+#28 exporting attestation manifest sha256:15d1d4efe9d39f3a45a7e32286888dd411161b159b2769266d1b30f0f5db9b02 0.0s done
+#28 exporting manifest list sha256:301e298e04253d2370e603419c4613b6be25b3a8d5cd1681f098c4458fe98660
+#28 exporting manifest list sha256:301e298e04253d2370e603419c4613b6be25b3a8d5cd1681f098c4458fe98660 0.1s done
+#28 naming to docker.io/library/ott-audience-segmentation-evaluator:latest 0.0s done
+#28 unpacking to docker.io/library/ott-audience-segmentation-evaluator:latest 0.0s done
+#28 DONE 0.3s
+
+#29 [api-cold] exporting to image
+#29 exporting layers done
+#29 exporting manifest sha256:3a85a0218bb4191936e6cc87da26be161146ce7e6ee921ed3e1ccb2ab6ce26be done
+#29 exporting config sha256:96f5edf01f8df10fdb21f8947925c56f5f1e52e53863a1701418883106641bf1 done
+#29 exporting attestation manifest sha256:c611689d4353a56271c271c7c317a4b80920234b3ae89412c2a1964f3812af0e 0.0s done
+#29 exporting manifest list sha256:349a744fe30297ca8d5acbd83f1c53436a9a688a9d6a55e192286bd8a4ff3d17 0.0s done
+#29 naming to docker.io/library/ott-audience-segmentation-api-cold:latest 0.0s done
+#29 unpacking to docker.io/library/ott-audience-segmentation-api-cold:latest 0.0s done
+#29 DONE 0.3s
+
+#30 [api] exporting to image
+#30 exporting layers done
+#30 exporting manifest sha256:50c07b3a3b89a21c4e989fc48d812cce55ad3d7f25518c5cb7766cd4c5aac330 done
+#30 exporting config sha256:63c26dfb7fddf604f404adcbb326d06237d1396add392e40df58fbdc8bbd67f3 0.0s done
+#30 exporting attestation manifest sha256:d5deb00cc0720b02e169b194a3f7b862d96e25cbd5c3a9d098197679d01bb857 0.0s done
+#30 exporting manifest list sha256:831ec95a84fe4549693626193e5c4f924c2dbf384c6096a56e3c52e38168048d 0.0s done
+#30 naming to docker.io/library/ott-audience-segmentation-api:latest 0.0s done
+#30 unpacking to docker.io/library/ott-audience-segmentation-api:latest 0.0s done
+#30 DONE 0.3s
+
+#31 [trainer] exporting to image
+#31 exporting layers done
+#31 exporting manifest sha256:f8fde21bef2196232e895c72ac270298a7eb722b4d579e0d3dd352149bfe8a04 done
+#31 exporting config sha256:832eb81e4c554ce176545f37ec960c48811468883a6807b639f555790fe06515 0.0s done
+#31 exporting attestation manifest sha256:ad3d0a28ecc08bc7b47a03a1e6a65b2048f8f5d08d331a07c86b9697f5a08fd6 0.0s done
+#31 exporting manifest list sha256:4b729c90ebd4154ea8eb851bed905be5848983fa0356b0630667b9cc46af47ec 0.1s done
+#31 naming to docker.io/library/ott-audience-segmentation-trainer:latest done
+#31 unpacking to docker.io/library/ott-audience-segmentation-trainer:latest 0.0s done
+#31 DONE 0.3s
+
+#32 [api] resolving provenance for metadata file
+#32 ...
+
+#33 [evaluator] resolving provenance for metadata file
+#33 DONE 0.1s
+
+#32 [api] resolving provenance for metadata file
+#32 DONE 0.2s
+
+#34 [api-cold] resolving provenance for metadata file
+#34 DONE 0.1s
+
+#35 [trainer] resolving provenance for metadata file
+#35 DONE 0.0s
+ Image ott-audience-segmentation-api-cold Built 
+ Image ott-audience-segmentation-evaluator Built 
+ Image ott-audience-segmentation-trainer Built 
+ Image ott-audience-segmentation-api Built 
+ Network ott-audience-segmentation_default Creating 
+ Network ott-audience-segmentation_default Creating 
+ Volume ott-audience-segmentation_model_volume Creating 
+ Volume ott-audience-segmentation_empty_volume Creating 
+ Volume ott-audience-segmentation_model_volume Creating 
+ Volume ott-audience-segmentation_empty_volume Creating 
+ Volume ott-audience-segmentation_empty_volume Created 
+ Volume ott-audience-segmentation_empty_volume Created 
+ Volume ott-audience-segmentation_model_volume Created 
+ Volume ott-audience-segmentation_model_volume Created 
+ Network ott-audience-segmentation_default Created 
+ Network ott-audience-segmentation_default Created 
+ Container ott-audience-segmentation-trainer-1 Creating 
+ Container ott-audience-segmentation-api-cold-1 Creating 
+ Container ott-audience-segmentation-trainer-1 Created 
+ Container ott-audience-segmentation-api-cold-1 Created 
+ Container ott-audience-segmentation-api-1 Creating 
+ Container ott-audience-segmentation-api-1 Created 
+ Container ott-audience-segmentation-evaluator-1 Creating 
+ Container ott-audience-segmentation-evaluator-1 Created 
+Attaching to api-1, api-cold-1, evaluator-1, trainer-1
+ Container ott-audience-segmentation-trainer-1 Starting 
+ Container ott-audience-segmentation-api-cold-1 Starting 
+ Container ott-audience-segmentation-trainer-1 Started 
+ Container ott-audience-segmentation-trainer-1 Waiting 
+ Container ott-audience-segmentation-api-cold-1 Started 
+api-cold-1  | INFO:     Started server process [1]
+api-cold-1  | INFO:     Waiting for application startup.
+api-cold-1  | 2026-09-28 16:50:29 [INFO] API starting up — attempting to load model...
+api-cold-1  | 2026-09-28 16:50:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:29 [WARNING] Model not loaded. Starting lazy loader thread.
+api-cold-1  | INFO:     Application startup complete.
+api-cold-1  | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+trainer-1   | 2026-09-28 16:50:29 [INFO] ============================================================
+trainer-1   | 2026-09-28 16:50:29 [INFO] Trainer Service Starting
+trainer-1   | 2026-09-28 16:50:29 [INFO] ============================================================
+trainer-1   | 2026-09-28 16:50:29 [INFO] Dataset found: /app/data/synthetic_ott_users.csv
+trainer-1   | 2026-09-28 16:50:29 [INFO] Loaded 2015 rows, 6 columns
+trainer-1   | 2026-09-28 16:50:29 [INFO] Raw dataset: 2015 rows, 6 columns
+trainer-1   | 2026-09-28 16:50:29 [INFO] Dropped 15 duplicate rows -> 2000 rows
+trainer-1   | 2026-09-28 16:50:29 [INFO] Set 5 negative values in total_watch_time_hours to NaN
+trainer-1   | 2026-09-28 16:50:29 [INFO] Set 3 negative values in avg_session_mins to NaN
+trainer-1   | 2026-09-28 16:50:29 [INFO] Missing values in total_watch_time_hours: 46
+trainer-1   | 2026-09-28 16:50:29 [INFO] Missing values in avg_session_mins: 47
+trainer-1   | 2026-09-28 16:50:29 [INFO] Missing values in sessions_per_week: 44
+trainer-1   | 2026-09-28 16:50:29 [INFO] Missing values in weekend_ratio: 46
+trainer-1   | 2026-09-28 16:50:29 [INFO] Missing values in top_genres: 15
+trainer-1   | 2026-09-28 16:50:29 [INFO] Imputed 46 NaN in total_watch_time_hours with median=62.68
+trainer-1   | 2026-09-28 16:50:29 [INFO] Imputed 47 NaN in avg_session_mins with median=44.10
+trainer-1   | 2026-09-28 16:50:29 [INFO] Imputed 44 NaN in sessions_per_week with median=4.70
+trainer-1   | 2026-09-28 16:50:29 [INFO] Imputed 46 NaN in weekend_ratio with median=0.51
+trainer-1   | 2026-09-28 16:50:29 [INFO] Imputed 15 NaN in top_genres with empty string
+trainer-1   | 2026-09-28 16:50:29 [INFO] Clean dataset: 2000 rows
+trainer-1   | 2026-09-28 16:50:29 [INFO] Feature matrix shape: (2000, 8)
+trainer-1   | 2026-09-28 16:50:29 [INFO] Features: ['log_watch_time', 'avg_session_mins', 'sessions_per_week', 'weekend_ratio', 'genre_action_thriller', 'genre_comedy_family', 'genre_drama_romance', 'num_genres']
+trainer-1   | 2026-09-28 16:50:29 [INFO] --- K Sweep (K=2..8) ---
+api-cold-1  | 2026-09-28 16:50:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:33938 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:50:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:50:36 [INFO] K=2: silhouette=0.3081, DB=1.5031, CH=799.31, stability=1.0000, min_share=0.421, max_share=0.579
+api-cold-1  | 2026-09-28 16:50:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:36556 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:50:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:50:42 [INFO] K=3: silhouette=0.3662, DB=1.1047, CH=810.92, stability=0.7727, min_share=0.142, max_share=0.569
+api-cold-1  | INFO:     127.0.0.1:36566 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:50:43 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:45 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:47 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:50:48 [INFO] K=4: silhouette=0.4265, DB=1.0267, CH=1011.24, stability=1.0000, min_share=0.141, max_share=0.325
+api-cold-1  | 2026-09-28 16:50:49 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:51 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:53 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:36444 - "GET /health HTTP/1.1" 200 OK
+trainer-1   | 2026-09-28 16:50:54 [INFO] K=5: silhouette=0.4647, DB=0.9944, CH=1196.35, stability=1.0000, min_share=0.142, max_share=0.277
+api-cold-1  | 2026-09-28 16:50:55 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:50:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:51:01 [INFO] K=6: silhouette=0.4727, DB=1.1948, CH=1120.35, stability=0.9967, min_share=0.093, max_share=0.272
+api-cold-1  | 2026-09-28 16:51:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:51:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:40980 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:51:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:51:07 [INFO] K=7: silhouette=0.4644, DB=1.1341, CH=1033.32, stability=0.9893, min_share=0.059, max_share=0.269
+api-cold-1  | 2026-09-28 16:51:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:51:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:51:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:51:13 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:51:14 [INFO] K=8: silhouette=0.3814, DB=1.2263, CH=953.96, stability=0.9733, min_share=0.054, max_share=0.226
+api-cold-1  | INFO:     127.0.0.1:44588 - "GET /health HTTP/1.1" 200 OK
+trainer-1   | 2026-09-28 16:51:15 [INFO] K=2 REJECTED: dominant cluster (max_share=0.579 > 0.50)
+api-cold-1  | 2026-09-28 16:51:15 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:51:16 [INFO] K=3 REJECTED: dominant cluster (max_share=0.569 > 0.50)
+api-cold-1  | 2026-09-28 16:51:17 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | 2026-09-28 16:51:19 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:51:21 [INFO] K=5 chosen over K=6 (within 0.01 silhouette noise margin, preferring smaller K).
+trainer-1   | 2026-09-28 16:51:21 [INFO] Selected K=5 (silhouette=0.4647)
+trainer-1   | 2026-09-28 16:51:21 [INFO] Training final KMeans with K=5
+api-cold-1  | 2026-09-28 16:51:21 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+trainer-1   | 2026-09-28 16:51:22 [INFO] --- GMM Experiment (K=5) ---
+trainer-1   | 2026-09-28 16:51:22 [INFO] GMM: silhouette=0.4215, DB=1.2873, CH=875.78, BIC=-31764.75
+trainer-1   | 2026-09-28 16:51:22 [INFO] Segment 0: 'Heavy-Engagement action_thriller-Purists' (n=553, share=0.277)
+trainer-1   | 2026-09-28 16:51:22 [INFO] Segment 1: 'Quick-Bite comedy_family-Fans' (n=464, share=0.232)
+trainer-1   | 2026-09-28 16:51:22 [INFO] Segment 2: 'Weekend-Binge drama_romance-Fans' (n=313, share=0.157)
+trainer-1   | 2026-09-28 16:51:22 [INFO] Segment 3: 'Quick-Bite Genre-Explorers' (n=284, share=0.142)
+trainer-1   | 2026-09-28 16:51:22 [INFO] Segment 4: 'Low-Activity drama_romance-Fans' (n=386, share=0.193)
+trainer-1   | 2026-09-28 16:51:22 [INFO] Pipeline saved to /app/models/pipeline.pkl
+trainer-1   | 2026-09-28 16:51:22 [INFO] Metadata saved to /app/models/metadata.json
+trainer-1   | 2026-09-28 16:51:22 [INFO] Clustering metrics saved to /app/models/clustering_metrics.json
+trainer-1   | 2026-09-28 16:51:22 [INFO] ============================================================
+trainer-1   | 2026-09-28 16:51:22 [INFO] Trainer completed successfully
+trainer-1   | 2026-09-28 16:51:22 [INFO] K=5, Silhouette=0.4647
+trainer-1   | 2026-09-28 16:51:22 [INFO] ============================================================
+[Ktrainer-1 exited with code 0
+ Container ott-audience-segmentation-trainer-1 Exited 
+ Container ott-audience-segmentation-api-1 Starting 
+ Container ott-audience-segmentation-api-1 Started 
+ Container ott-audience-segmentation-api-1 Waiting 
+api-cold-1  | 2026-09-28 16:51:23 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:45228 - "GET /health HTTP/1.1" 200 OK
+api-1       | INFO:     Started server process [1]
+api-1       | INFO:     Waiting for application startup.
+api-1       | 2026-09-28 16:51:25 [INFO] API starting up — attempting to load model...
+api-cold-1  | 2026-09-28 16:51:25 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:27 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-1       | 2026-09-28 16:51:27 [WARNING] Model not loaded. Starting lazy loader thread.
+api-1       | INFO:     Application startup complete.
+api-1       | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+api-cold-1  | 2026-09-28 16:51:27 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:45236 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:51:29 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:31 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:33 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:51374 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:51:35 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | INFO:     127.0.0.1:51388 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:51:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:37 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:51398 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:51:39 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:41 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:43 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:43 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:45 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:45 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:36796 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:51:47 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:47 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:36812 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:51:49 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:49 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:51 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:51 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:53 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:53 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:55 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:55 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:33166 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:51:57 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:51:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:51:59 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-1       | INFO:     127.0.0.1:33182 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:51:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:01 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:03 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:05 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:36132 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:07 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:09 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:36144 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:11 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:13 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:13 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:15 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:15 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:45604 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:17 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:17 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:19 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:19 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:45610 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:21 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:21 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:23 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:23 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:25 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:25 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:27 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | INFO:     127.0.0.1:36886 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:52:27 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:29 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:29 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:36894 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:31 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:31 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:33 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:33 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:35 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:35 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:37 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:37 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:50116 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:39 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:39 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:50132 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:41 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:41 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:43 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:43 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:45 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:45 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:47 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:47 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:46968 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:49 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:49 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:51 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-1       | INFO:     127.0.0.1:46970 - "GET /health HTTP/1.1" 200 OK
+api-cold-1  | 2026-09-28 16:52:51 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:53 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:53 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:55 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:55 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:52:57 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:57 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:53538 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:52:59 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:52:59 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:53:01 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:53:01 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:53542 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:53:03 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:53:03 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:53:05 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:53:05 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:53:07 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:53:07 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-cold-1  | INFO:     127.0.0.1:42744 - "GET /health HTTP/1.1" 200 OK
+api-1       | 2026-09-28 16:53:09 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:53:09 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | 2026-09-28 16:53:11 [ERROR] Failed to load model: Can't get attribute 'OTTFeatureTransformer' on <module '__main__' from '/usr/local/bin/uvicorn'>
+api-cold-1  | 2026-09-28 16:53:11 [WARNING] Pipeline not found at /app/models/pipeline.pkl. Model not loaded.
+api-1       | INFO:     127.0.0.1:42754 - "GET /health HTTP/1.1" 200 OK
+ Container ott-audience-segmentation-api-1 Error dependency api failed to start
+dependency failed to start: container ott-audience-segmentation-api-1 is unhealthy

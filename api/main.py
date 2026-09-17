@@ -49,6 +49,55 @@ _model_loaded = False
 _load_lock = threading.Lock()
 
 
+import sys
+import pandas as pd
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class OTTFeatureTransformer(BaseEstimator, TransformerMixin):
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        if isinstance(X, pd.DataFrame):
+            df = X.copy()
+        else:
+            raise ValueError("OTTFeatureTransformer expects a DataFrame")
+
+        result = pd.DataFrame(index=df.index)
+
+        # Log1p transform for right-skewed watch time
+        result["log_watch_time"] = np.log1p(
+            df["total_watch_time_hours"].fillna(0).clip(lower=0)
+        )
+        result["avg_session_mins"] = df["avg_session_mins"].fillna(0).clip(lower=0)
+        result["sessions_per_week"] = df["sessions_per_week"].fillna(0).clip(lower=0)
+        result["weekend_ratio"] = df["weekend_ratio"].fillna(0).clip(lower=0, upper=1)
+
+        # Compact genre groups
+        action_group = {"Action", "Thriller", "Crime", "Sci-Fi", "Horror"}
+        comedy_group = {"Comedy", "Family", "Animation", "Adventure"}
+        drama_group = {"Drama", "Romance", "Mystery", "Documentary", "Fantasy", "Musical"}
+        
+        genres_series = df["top_genres"].fillna("").apply(lambda x: set([g.strip() for g in str(x).split(";") if g.strip()]))
+        
+        result["genre_action_thriller"] = genres_series.apply(lambda x: 1.0 if not x.isdisjoint(action_group) else 0.0)
+        result["genre_comedy_family"] = genres_series.apply(lambda x: 1.0 if not x.isdisjoint(comedy_group) else 0.0)
+        result["genre_drama_romance"] = genres_series.apply(lambda x: 1.0 if not x.isdisjoint(drama_group) else 0.0)
+
+        # Genre diversity count
+        result["num_genres"] = genres_series.apply(len).astype(float)
+
+        return result.values
+
+    def get_feature_names_out(self, input_features=None):
+        return [
+            "log_watch_time", "avg_session_mins", "sessions_per_week", "weekend_ratio",
+            "genre_action_thriller", "genre_comedy_family", "genre_drama_romance", "num_genres"
+        ]
+
+# Map it to __main__ so joblib unpickles it successfully when loaded via uvicorn
+setattr(sys.modules["__main__"], "OTTFeatureTransformer", OTTFeatureTransformer)
+
 def try_load_model() -> bool:
     """Attempt to load the pipeline and metadata from /app/models."""
     global _model_pipeline, _model_metadata, _model_loaded

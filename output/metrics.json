@@ -1,0 +1,603 @@
+{
+  "evaluation_timestamp": "2026-09-28T16:54:57Z",
+  "api_url": "http://api:8000",
+  "overall_status": "PASS",
+  "summary": {
+    "tests_passed": 25,
+    "tests_total": 25,
+    "tests_failed": 0
+  },
+  "latency": {
+    "avg_ms": 11.51,
+    "p95_ms": 32.32,
+    "max_ms": 32.32,
+    "min_ms": 2.94,
+    "count": 10
+  },
+  "tests": [
+    {
+      "test": "GET /health",
+      "passed": true,
+      "expected": {
+        "status": "ok",
+        "model_loaded": true
+      },
+      "actual": {
+        "status": "ok",
+        "model_loaded": true
+      },
+      "status_code": 200,
+      "response_time_ms": 2.94
+    },
+    {
+      "test": "Valid profile: High engagement action viewer",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-TEST-001",
+        "segment_id": 0,
+        "segment_name": "Heavy-Engagement action_thriller-Purists",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 1.0346
+      },
+      "status_code": 200,
+      "response_time_ms": 32.32
+    },
+    {
+      "test": "Valid profile: Casual short-session viewer",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-TEST-002",
+        "segment_id": 4,
+        "segment_name": "Low-Activity drama_romance-Fans",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 2.2044
+      },
+      "status_code": 200,
+      "response_time_ms": 12.53
+    },
+    {
+      "test": "Valid profile: Genre explorer moderate viewer",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-TEST-003",
+        "segment_id": 3,
+        "segment_name": "Quick-Bite Genre-Explorers",
+        "recommendations": [
+          "Short Films Collection",
+          "Quick Bites: 15-Min Episodes"
+        ],
+        "distance_to_centroid": 2.1816
+      },
+      "status_code": 200,
+      "response_time_ms": 13.22
+    },
+    {
+      "test": "Valid profile: Low activity weekend viewer",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-TEST-004",
+        "segment_id": 4,
+        "segment_name": "Low-Activity drama_romance-Fans",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 2.5761
+      },
+      "status_code": 200,
+      "response_time_ms": 9.1
+    },
+    {
+      "test": "Segment coverage: diverse profiles hit multiple segments",
+      "passed": true,
+      "expected": "At least 2 different segments",
+      "actual": "Hit 3 segments: [0, 3, 4]"
+    },
+    {
+      "test": "Segment name matches metadata for USR-TEST-001",
+      "passed": true,
+      "expected": "Heavy-Engagement action_thriller-Purists",
+      "actual": "Heavy-Engagement action_thriller-Purists"
+    },
+    {
+      "test": "Segment name matches metadata for USR-TEST-002",
+      "passed": true,
+      "expected": "Low-Activity drama_romance-Fans",
+      "actual": "Low-Activity drama_romance-Fans"
+    },
+    {
+      "test": "Segment name matches metadata for USR-TEST-003",
+      "passed": true,
+      "expected": "Quick-Bite Genre-Explorers",
+      "actual": "Quick-Bite Genre-Explorers"
+    },
+    {
+      "test": "Segment name matches metadata for USR-TEST-004",
+      "passed": true,
+      "expected": "Low-Activity drama_romance-Fans",
+      "actual": "Low-Activity drama_romance-Fans"
+    },
+    {
+      "test": "Edge: unseen genre values",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-EDGE-001",
+        "segment_id": 4,
+        "segment_name": "Low-Activity drama_romance-Fans",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 2.1959
+      },
+      "status_code": 200,
+      "response_time_ms": 10.53
+    },
+    {
+      "test": "Edge: empty top_genres list",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-EDGE-002",
+        "segment_id": 4,
+        "segment_name": "Low-Activity drama_romance-Fans",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 2.1959
+      },
+      "status_code": 200,
+      "response_time_ms": 9.08
+    },
+    {
+      "test": "Edge: zero watch time",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-EDGE-003",
+        "segment_id": 4,
+        "segment_name": "Low-Activity drama_romance-Fans",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 3.0761
+      },
+      "status_code": 200,
+      "response_time_ms": 9.78
+    },
+    {
+      "test": "Edge: very large watch time (999)",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-EDGE-004",
+        "segment_id": 0,
+        "segment_name": "Heavy-Engagement action_thriller-Purists",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 2.5691
+      },
+      "status_code": 200,
+      "response_time_ms": 8.03
+    },
+    {
+      "test": "Edge: very large session duration (999)",
+      "passed": true,
+      "expected": "HTTP 200 + validation",
+      "actual": {
+        "user_id": "USR-EDGE-005",
+        "segment_id": 2,
+        "segment_name": "Weekend-Binge drama_romance-Fans",
+        "recommendations": [
+          "Trending Now: Top 10 This Week",
+          "Quick Watch: 30-Min Specials"
+        ],
+        "distance_to_centroid": 21.2009
+      },
+      "status_code": 200,
+      "response_time_ms": 7.61
+    },
+    {
+      "test": "Edge: missing required field (user_id)",
+      "passed": true,
+      "expected": "HTTP 422",
+      "actual": "HTTP 422",
+      "status_code": 422,
+      "response_time_ms": 2.16
+    },
+    {
+      "test": "Edge: missing required field (watch_time_hours)",
+      "passed": true,
+      "expected": "HTTP 422",
+      "actual": "HTTP 422",
+      "status_code": 422,
+      "response_time_ms": 2.05
+    },
+    {
+      "test": "Edge: string where number expected",
+      "passed": true,
+      "expected": "HTTP 422",
+      "actual": "HTTP 422",
+      "status_code": 422,
+      "response_time_ms": 1.91
+    },
+    {
+      "test": "Edge: negative watch_time_hours",
+      "passed": true,
+      "expected": "HTTP 422",
+      "actual": "HTTP 422",
+      "status_code": 422,
+      "response_time_ms": 2.79
+    },
+    {
+      "test": "Edge: negative avg_session_mins",
+      "passed": true,
+      "expected": "HTTP 422",
+      "actual": "HTTP 422",
+      "status_code": 422,
+      "response_time_ms": 2.94
+    },
+    {
+      "test": "Edge: malformed JSON body",
+      "passed": true,
+      "expected": "HTTP 400",
+      "actual": "HTTP 400",
+      "status_code": 400,
+      "response_time_ms": 3.73
+    },
+    {
+      "test": "Edge: repeated identical requests produce identical responses",
+      "passed": true,
+      "expected": "All 3 responses identical",
+      "actual": "Identical=True, responses_count=3"
+    },
+    {
+      "test": "Edge: absurdly large watch_time (5000, above max 1000)",
+      "passed": true,
+      "expected": "HTTP 422",
+      "actual": "HTTP 422",
+      "status_code": 422,
+      "response_time_ms": 3.85
+    },
+    {
+      "test": "Cold start: GET /health returns model_loaded=false",
+      "passed": true,
+      "expected": {
+        "status": "ok",
+        "model_loaded": false
+      },
+      "actual": {
+        "status": "ok",
+        "model_loaded": false
+      },
+      "status_code": 200
+    },
+    {
+      "test": "Cold start: POST /recommend returns 503",
+      "passed": true,
+      "expected": "HTTP 503",
+      "actual": "HTTP 503",
+      "status_code": 503
+    }
+  ],
+  "clustering_metrics": {
+    "selected_k": 5,
+    "selection_method": "Highest silhouette among K values without tiny (<5%) or dominant (>60%) clusters. Ties broken by stability (ARI), then lower Davies-Bouldin.",
+    "k_sweep_results": {
+      "2": {
+        "k": 2,
+        "silhouette": 0.3081,
+        "davies_bouldin": 1.5031,
+        "calinski_harabasz": 799.3077,
+        "inertia": 11428.13,
+        "cluster_sizes": {
+          "0": 1157,
+          "1": 843
+        },
+        "cluster_shares": {
+          "0": 0.5785,
+          "1": 0.4215
+        },
+        "min_share": 0.4215,
+        "max_share": 0.5785,
+        "stability_ari": 1.0,
+        "has_tiny_cluster": false,
+        "has_dominant_cluster": false
+      },
+      "3": {
+        "k": 3,
+        "silhouette": 0.3662,
+        "davies_bouldin": 1.1047,
+        "calinski_harabasz": 810.9224,
+        "inertia": 8829.34,
+        "cluster_sizes": {
+          "0": 577,
+          "1": 1138,
+          "2": 285
+        },
+        "cluster_shares": {
+          "0": 0.2885,
+          "1": 0.569,
+          "2": 0.1425
+        },
+        "min_share": 0.1425,
+        "max_share": 0.569,
+        "stability_ari": 0.7727,
+        "has_tiny_cluster": false,
+        "has_dominant_cluster": false
+      },
+      "4": {
+        "k": 4,
+        "silhouette": 0.4265,
+        "davies_bouldin": 1.0267,
+        "calinski_harabasz": 1011.2365,
+        "inertia": 6349.47,
+        "cluster_sizes": {
+          "0": 535,
+          "1": 649,
+          "2": 533,
+          "3": 283
+        },
+        "cluster_shares": {
+          "0": 0.2675,
+          "1": 0.3245,
+          "2": 0.2665,
+          "3": 0.1415
+        },
+        "min_share": 0.1415,
+        "max_share": 0.3245,
+        "stability_ari": 1.0,
+        "has_tiny_cluster": false,
+        "has_dominant_cluster": false
+      },
+      "5": {
+        "k": 5,
+        "silhouette": 0.4647,
+        "davies_bouldin": 0.9944,
+        "calinski_harabasz": 1196.3456,
+        "inertia": 4707.7,
+        "cluster_sizes": {
+          "0": 553,
+          "1": 464,
+          "2": 313,
+          "3": 284,
+          "4": 386
+        },
+        "cluster_shares": {
+          "0": 0.2765,
+          "1": 0.232,
+          "2": 0.1565,
+          "3": 0.142,
+          "4": 0.193
+        },
+        "min_share": 0.142,
+        "max_share": 0.2765,
+        "stability_ari": 1.0,
+        "has_tiny_cluster": false,
+        "has_dominant_cluster": false
+      },
+      "6": {
+        "k": 6,
+        "silhouette": 0.4727,
+        "davies_bouldin": 1.1948,
+        "calinski_harabasz": 1120.3513,
+        "inertia": 4200.24,
+        "cluster_sizes": {
+          "0": 461,
+          "1": 544,
+          "2": 301,
+          "3": 284,
+          "4": 187,
+          "5": 223
+        },
+        "cluster_shares": {
+          "0": 0.2305,
+          "1": 0.272,
+          "2": 0.1505,
+          "3": 0.142,
+          "4": 0.0935,
+          "5": 0.1115
+        },
+        "min_share": 0.0935,
+        "max_share": 0.272,
+        "stability_ari": 0.9967,
+        "has_tiny_cluster": false,
+        "has_dominant_cluster": false
+      },
+      "7": {
+        "k": 7,
+        "silhouette": 0.4644,
+        "davies_bouldin": 1.1341,
+        "calinski_harabasz": 1033.3238,
+        "inertia": 3892.13,
+        "cluster_sizes": {
+          "0": 149,
+          "1": 537,
+          "2": 451,
+          "3": 284,
+          "4": 301,
+          "5": 159,
+          "6": 119
+        },
+        "cluster_shares": {
+          "0": 0.0745,
+          "1": 0.2685,
+          "2": 0.2255,
+          "3": 0.142,
+          "4": 0.1505,
+          "5": 0.0795,
+          "6": 0.0595
+        },
+        "min_share": 0.0595,
+        "max_share": 0.2685,
+        "stability_ari": 0.9893,
+        "has_tiny_cluster": false,
+        "has_dominant_cluster": false
+      },
+      "8": {
+        "k": 8,
+        "silhouette": 0.3814,
+        "davies_bouldin": 1.2263,
+        "calinski_harabasz": 953.9551,
+        "inertia": 3676.26,
+        "cluster_sizes": {
+          "0": 288,
+          "1": 108,
+          "2": 301,
+          "3": 151,
+          "4": 284,
+          "5": 159,
+          "6": 451,
+          "7": 258
+        },
+        "cluster_shares": {
+          "0": 0.144,
+          "1": 0.054,
+          "2": 0.1505,
+          "3": 0.0755,
+          "4": 0.142,
+          "5": 0.0795,
+          "6": 0.2255,
+          "7": 0.129
+        },
+        "min_share": 0.054,
+        "max_share": 0.2255,
+        "stability_ari": 0.9733,
+        "has_tiny_cluster": false,
+        "has_dominant_cluster": false
+      }
+    },
+    "rejected_ks": {
+      "2": [
+        "dominant cluster (max_share=0.579 > 0.50)"
+      ],
+      "3": [
+        "dominant cluster (max_share=0.569 > 0.50)"
+      ]
+    },
+    "final_metrics": {
+      "k": 5,
+      "silhouette": 0.4647,
+      "davies_bouldin": 0.9944,
+      "calinski_harabasz": 1196.3456,
+      "inertia": 4707.7,
+      "cluster_sizes": {
+        "0": 553,
+        "1": 464,
+        "2": 313,
+        "3": 284,
+        "4": 386
+      },
+      "cluster_shares": {
+        "0": 0.2765,
+        "1": 0.232,
+        "2": 0.1565,
+        "3": 0.142,
+        "4": 0.193
+      },
+      "min_share": 0.142,
+      "max_share": 0.2765,
+      "stability_ari": 1.0,
+      "has_tiny_cluster": false,
+      "has_dominant_cluster": false
+    },
+    "gmm_experiment": {
+      "silhouette": 0.4215,
+      "davies_bouldin": 1.2873,
+      "calinski_harabasz": 875.7788,
+      "bic": -31764.75,
+      "cluster_sizes": {
+        "0": 624,
+        "1": 520,
+        "2": 414,
+        "3": 288,
+        "4": 154
+      }
+    },
+    "balance_thresholds": {
+      "min_cluster_share": 0.05,
+      "max_dominant_share": 0.6
+    }
+  },
+  "model_metadata": {
+    "n_clusters": 5,
+    "segment_names": {
+      "0": "Heavy-Engagement action_thriller-Purists",
+      "1": "Quick-Bite comedy_family-Fans",
+      "2": "Weekend-Binge drama_romance-Fans",
+      "3": "Quick-Bite Genre-Explorers",
+      "4": "Low-Activity drama_romance-Fans"
+    },
+    "segment_profiles": {
+      "0": {
+        "name": "Heavy-Engagement action_thriller-Purists",
+        "size": 553,
+        "share": 0.2765,
+        "top_genres": [
+          "action_thriller",
+          "comedy_family",
+          "drama_romance"
+        ]
+      },
+      "1": {
+        "name": "Quick-Bite comedy_family-Fans",
+        "size": 464,
+        "share": 0.232,
+        "top_genres": [
+          "comedy_family",
+          "action_thriller",
+          "drama_romance"
+        ]
+      },
+      "2": {
+        "name": "Weekend-Binge drama_romance-Fans",
+        "size": 313,
+        "share": 0.1565,
+        "top_genres": [
+          "drama_romance",
+          "comedy_family",
+          "action_thriller"
+        ]
+      },
+      "3": {
+        "name": "Quick-Bite Genre-Explorers",
+        "size": 284,
+        "share": 0.142,
+        "top_genres": [
+          "drama_romance",
+          "action_thriller",
+          "comedy_family"
+        ]
+      },
+      "4": {
+        "name": "Low-Activity drama_romance-Fans",
+        "size": 386,
+        "share": 0.193,
+        "top_genres": [
+          "drama_romance",
+          "action_thriller",
+          "comedy_family"
+        ]
+      }
+    },
+    "is_synthetic_data": true,
+    "sklearn_version": "1.5.2",
+    "seed": 42
+  },
+  "note": "This evaluation was run on SYNTHETIC data. Silhouette and stability results reflect the generator, not real viewer behavior."
+}
