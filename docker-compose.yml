@@ -1,0 +1,58 @@
+services:
+  trainer:
+    build:
+      context: ./trainer
+      network: host
+    volumes:
+      - ./data:/app/data:ro
+      - model_volume:/app/models
+    restart: "no"
+
+  api:
+    build:
+      context: ./api
+      network: host
+    ports:
+      - "8000:8000"
+    volumes:
+      - model_volume:/app/models:ro
+    depends_on:
+      trainer:
+        condition: service_completed_successfully
+    restart: "no"
+
+  # Cold-start API instance on an empty volume (no trained model)
+  # Used by evaluator to test model-not-loaded scenario
+  api-cold:
+    build:
+      context: ./api
+      network: host
+    ports:
+      - "8001:8000"
+    volumes:
+      - empty_volume:/app/models:ro
+    restart: "no"
+
+  evaluator:
+    build:
+      context: ./evaluator
+      network: host
+    volumes:
+      - ./output:/app/output
+      - model_volume:/app/models:ro
+    environment:
+      - API_URL=http://api:8000
+      - COLD_API_URL=http://api-cold:8000
+      - METRICS_PATH=/app/output/metrics.json
+      - CLUSTERING_METRICS_PATH=/app/models/clustering_metrics.json
+      - METADATA_PATH=/app/models/metadata.json
+    depends_on:
+      api:
+        condition: service_healthy
+      api-cold:
+        condition: service_started
+    restart: "no"
+
+volumes:
+  model_volume:
+  empty_volume:

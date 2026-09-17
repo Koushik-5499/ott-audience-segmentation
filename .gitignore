@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Environment / secrets
+.env.*
+secrets/
+*.pem
+*.key
+*.token
+*.secret
+
+# Project-specific: trained model artifacts (generated at runtime, not committed)
+models/*.pkl
+models/*.joblib
+models/*.json
+
+# Editor / OS
+*.swp
+*.swo
+*.DS_Store
+.idea/
+.vscode/
+
+# Temp / cache
+*.log
+*.tmp
